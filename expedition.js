@@ -1,6 +1,7 @@
 (() => {
  const $=selector=>document.querySelector(selector);
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const portrait=matchMedia('(max-aspect-ratio: 4/5)');
  let motion=!reduced.matches,scheduled=false;
  const visited=[];
  const captions={space:['01 / OUTSIDE THE GALAXY','02 / A SYSTEM OF POSSIBILITIES','03 / A DESTINATION DISCOVERED'],jungle:['01 / ABOVE THE CANOPY','02 / FOLLOW THE WATER','03 / A LIGHT WITHIN']};
@@ -18,12 +19,13 @@
   // Keep the lower layer opaque while the next fades in: no dark dip or cut.
   const weights=phase<1?[1,ease(phase),0]:[0,1,ease(phase-1)];
   const stop=Math.min(2,Math.round(phase));
-  document.querySelectorAll('.scene-image').forEach(image=>{
+  document.querySelectorAll('.scene-image,.scene-ambient').forEach(image=>{
    const [w,n]=image.dataset.scene.split('-');const i=Number(n)-1;
    image.style.opacity=w===world?String(weights[i]):'0';
    const local=clamp((phase-i+1)/2);
-   // Keep the entire illustration inside the viewport, including on portrait screens.
-   image.style.transform=motion?'scale('+(.965+local*.025).toFixed(3)+') translateY('+((.5-local)*.8).toFixed(2)+'%)':'none';
+   // Desktop keeps the full wide composition; portrait art fills the screen with gentle overscan.
+   const scale=portrait.matches?1.015+local*.020:.965+local*.025;
+   image.style.transform=image.classList.contains('scene-ambient')?'none':motion?'scale('+scale.toFixed(3)+') translateY('+((.5-local)*.8).toFixed(2)+'%)':'none';
   });
   $('#scene-caption').textContent=captions[world][stop];
   document.querySelectorAll('[data-stop]').forEach(link=>{if(Number(link.dataset.stop)===stop)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
@@ -36,6 +38,7 @@
   $('#motion-toggle').textContent=motion?'Camera motion on · pause':'Soft fades · enable camera';
  }
  function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(frame);}}
+ portrait.addEventListener('change',schedule);
  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);addEventListener('worldchange',schedule);
  document.addEventListener('scroll',schedule,{passive:true,capture:true});
  reduced.addEventListener('change',()=>{motion=!reduced.matches;schedule();});

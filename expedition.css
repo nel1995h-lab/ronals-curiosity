@@ -8,3 +8,27 @@ body{isolation:isolate}.scene-stage{position:fixed;inset:0;z-index:0;overflow:hi
 
 /* Full composition, not a cropped full-bleed photograph. */
 .scene-image{object-fit:contain;object-position:center center;transform-origin:center center}.scene-stage{background:radial-gradient(ellipse at 65% 45%,#123052 0%,#071423 45%,#020712 100%)}body[data-world=jungle] .scene-stage{background:radial-gradient(ellipse at 65% 45%,#214b35 0%,#0a221b 45%,#030e0c 100%)}.scene-shade{background:linear-gradient(90deg,#020914a8 0%,#02091455 35%,#02091400 75%),linear-gradient(0deg,#02091444,transparent 60%)}body[data-world=jungle] .scene-shade{background:linear-gradient(90deg,#061b13b3,#061b1355 40%,#061b1300),linear-gradient(0deg,#061b1333,transparent)}@media(max-width:600px){.scene-image{object-position:center center}.scene-shade{background:linear-gradient(90deg,#02091477,#02091433 50%,transparent)}}
+
+/* Portrait screens receive a vertically composed scene, not a letterboxed desktop image. */
+@media (max-aspect-ratio: 4/5) {
+ .scene-stage{bottom:auto;height:100%;height:100lvh}
+ .scene-image{object-fit:cover;object-position:50% 50%;transform-origin:50% 50%}
+ .scene-shade{background:linear-gradient(90deg,#0209149c,#02091420 80%),linear-gradient(180deg,#02091470,transparent 30%,#02091440)}
+ body[data-world=jungle] .scene-shade{background:linear-gradient(90deg,#061b139c,#061b1320 80%),linear-gradient(180deg,#061b1370,transparent 30%,#061b1340)}
+}
+
+/* Extend the scene softly behind the complete sharp composition on wide screens. */
+.scene-ambient{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;object-position:center;filter:blur(30px) brightness(.6) saturate(.85);opacity:0;pointer-events:none}
+.scene-ambient[data-scene=space-1]{opacity:1}
+body[data-world=jungle] .scene-ambient[data-scene=space-1]{opacity:0}
+body[data-world=jungle] .scene-ambient[data-scene=jungle-1]{opacity:1}
+@media(min-aspect-ratio:4/5){
+ .scene-image{-webkit-mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
+}
+
+.share-invitation{margin-top:32px;max-width:550px;padding:22px;background:var(--glass);border:1px solid var(--glass-border);border-radius:5px 25px 5px 5px;backdrop-filter:blur(8px) brightness(.78)}
+.share-actions{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+.share-actions a{display:inline-block;padding:14px 16px;color:var(--ink);border:1px solid var(--glass-border);border-radius:6px;text-decoration:none;font-size:13px;background:rgba(87,151,218,.16);box-shadow:0 0 20px var(--halo)}
+body[data-world=jungle] .share-actions a{background:rgba(166,146,66,.16)}
+.share-actions a[aria-disabled=true]{opacity:.75}
+.share-invitation>p:last-child{font-size:12px;line-height:1.7;color:var(--dim)}

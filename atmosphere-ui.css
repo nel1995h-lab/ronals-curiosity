@@ -1,0 +1,36 @@
+/* Luminous glass: readable local surfaces, scenery remains visible. */
+body{--glass:rgba(7,22,43,.48);--glass-border:rgba(165,210,255,.46);--glass-hover:rgba(17,45,76,.62);--halo:rgba(95,179,255,.26);--ink:#f5f8ff;--dim:#d4dfed;--line:rgba(164,204,247,.40);--surface:var(--glass)}
+body[data-world=jungle]{--glass:rgba(5,25,20,.56);--glass-border:rgba(229,235,180,.54);--glass-hover:rgba(23,48,34,.67);--halo:rgba(240,214,122,.20);--ink:#fffdf2;--dim:#e4eadc;--accent:#ffe49a;--line:rgba(232,232,183,.46);--surface:var(--glass)}
+.hero label{direction:ltr}.invitation{max-width:540px}.invitation h2{font-size:clamp(24px,2.7vw,34px);line-height:1.35}.invitation p{line-height:1.75}
+.seed-input,.world-picker,.travelling-note,.note-editor,.trace,#placed-note,dialog{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(8px) brightness(.78);-webkit-backdrop-filter:blur(8px) brightness(.78);box-shadow:inset 0 1px 0 #ffffff13,0 10px 30px #00000024}
+.seed-input{border-radius:8px;overflow:hidden}.seed-input input{color:var(--ink)}input::placeholder,textarea::placeholder{color:var(--dim);opacity:1}
+.seed-input button,.note-tools button:first-child,.world-picker button[aria-pressed=true]{background:rgba(87,151,218,.19);color:var(--ink);border:1px solid rgba(164,213,255,.70);box-shadow:inset 0 0 16px #67b4ff12,0 0 20px var(--halo);text-shadow:0 1px 5px #0008}
+.seed-input button{border-width:0 0 0 1px;padding:14px 20px;min-width:165px;font-size:13px}
+.world-picker{box-shadow:0 0 24px var(--halo);gap:3px}.world-picker button{border:1px solid transparent;color:var(--dim)}
+.subtle{padding:10px 13px;background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;backdrop-filter:blur(6px);color:var(--ink);text-decoration:none}
+.instruments .symbol{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(6px) brightness(.75);box-shadow:0 0 20px var(--halo),inset 0 0 14px #90cfff12;color:#badaff;text-shadow:0 0 12px #80c2ff77}
+.instruments strong,.instruments small{width:max-content;max-width:125px;display:table;margin-left:auto;margin-right:auto;padding:4px 8px;border-radius:10px;background:rgba(4,16,31,.52);backdrop-filter:blur(5px) brightness(.68);color:var(--ink);text-shadow:0 1px 4px #000;font-weight:500}
+.instruments small{font-size:11px;margin-top:4px;color:var(--dim)}
+.instruments button[aria-pressed=true] .symbol,.instruments button:hover .symbol{border-color:#c6e7ff;box-shadow:0 0 9px #98d4ff77,0 0 32px var(--halo),inset 0 0 14px #a6d7ff22}
+.constellation-lines path{stroke:rgba(191,220,255,.5)}.constellation-lines .visited-path{stroke:#c2e5ff;filter:drop-shadow(0 0 5px #7dc7ff)}
+#discovery{background:var(--glass);border:1px solid var(--glass-border);border-left:2px solid var(--accent);border-radius:4px 20px 4px 4px;padding:22px;backdrop-filter:blur(8px) brightness(.78)}
+.traces-disclosure>summary,.next-step>summary{background:var(--glass);border:1px solid var(--glass-border);padding:16px 18px;border-radius:5px 20px 5px 5px;color:var(--ink);backdrop-filter:blur(6px) brightness(.78)}
+.trace[open] summary{border-bottom:1px solid var(--glass-border)}.trace-story .trace-thought{color:var(--accent)}
+.next-step[open]{background:rgba(5,20,31,.35);padding-bottom:16px;border-radius:5px 20px 5px 5px;backdrop-filter:blur(6px)}.next-step[open]>p,.next-step[open]>.link,.next-step[open]>small{margin-left:18px;margin-right:18px}
+.note-tools button,.arrival button{background:var(--glass);border:1px solid var(--glass-border);border-radius:5px;padding:12px 16px;backdrop-filter:blur(5px);color:var(--ink)}
+.link{color:var(--accent);text-shadow:0 1px 4px #000}.eyebrow,.tiny,.intro,.invitation p,.hero label,.skip,.edge-caption,.arrival>p,.arrival>small,.brand,.field>h2,.meeting>h2,.hero h1,.invitation h2{text-shadow:0 2px 5px #000c,0 0 16px #0009}
+.eyebrow{display:table;background:rgba(3,15,28,.40);padding:6px 9px;border-radius:4px;backdrop-filter:blur(4px)}
+body[data-world=space] .hero h1 em{color:#b9dcff;text-shadow:0 0 20px #80baff44,0 2px 8px #0008}
+body[data-world=space] .arrival-symbol{color:#c7e8ff;text-shadow:0 0 15px #9cd6ff,0 0 45px #619cfa88}
+.scene-navigation{background:rgba(4,17,31,.52);backdrop-filter:blur(9px) brightness(.7);border-top-color:var(--glass-border)}
+button:hover,.world-picker button:hover{filter:brightness(1.13)}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #fff0bf;outline-offset:4px}
+/* Warm ivory and firefly light separate jungle controls from green foliage. */
+body[data-world=jungle] .instruments .symbol{background:rgba(10,29,22,.56);color:#fff0bb;border-color:rgba(255,233,165,.70);box-shadow:0 0 18px var(--halo),inset 0 0 14px #f3df8f10;text-shadow:0 0 10px #e8d08d44}
+body[data-world=jungle] .instruments strong,body[data-world=jungle] .instruments small{background:rgba(5,24,17,.62);color:var(--ink)}
+body[data-world=jungle] .instruments button[aria-pressed=true] .symbol,body[data-world=jungle] .instruments button:hover .symbol{border-color:#fff2c6;box-shadow:0 0 12px #ffe79e55,0 0 30px var(--halo)}
+body[data-world=jungle] .seed-input button,body[data-world=jungle] .note-tools button:first-child,body[data-world=jungle] .world-picker button[aria-pressed=true]{background:rgba(166,146,66,.20);border-color:rgba(255,230,158,.72);color:#fff7db;box-shadow:0 0 18px var(--halo),inset 0 1px 0 #fff1bd20}
+body[data-world=jungle] .constellation-lines path{stroke:rgba(255,232,168,.57)}body[data-world=jungle] .constellation-lines .visited-path{stroke:#ffeca9;filter:drop-shadow(0 0 5px #e7c56d)}
+body[data-world=jungle] .eyebrow{background:rgba(4,24,16,.50);color:#ffedb9}body[data-world=jungle] .scene-navigation{background:rgba(5,24,18,.56)}
+body[data-world=jungle] .hero h1 em{color:#fff0bd}body[data-world=jungle] .brand span{color:#ffe7a1}body[data-world=jungle] .arrival-symbol{color:#fff0ba;text-shadow:0 0 18px #f2ca7377}
+@media(max-width:600px){.instruments small{font-size:9px;padding:4px 5px}.instruments strong{font-size:12px;padding:4px 6px}.invitation h2{font-size:25px}.seed-input button{border-width:1px 0 0}.traces-disclosure>summary{font-size:14px;line-height:1.5}.subtle{font-size:10px;padding:8px 10px}}
+@supports not (backdrop-filter:blur(5px)){.seed-input,.world-picker,.travelling-note,.note-editor,.trace,dialog,#discovery{background:rgba(5,20,29,.82)}}
